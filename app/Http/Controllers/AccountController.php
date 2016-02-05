@@ -68,7 +68,7 @@ class AccountController extends Controller
 	public function getEdit($accountId){
 		$account = Account::findOrFail($accountId);
 		if(Gate::denies('update', $account)){
-			return "Fuck you hacked";
+			return "Hey guy, Don't try to hack, This account is not belong to you.";
 		}
 		return view('account.edit', ['account'=>$account]);
 	}
@@ -83,7 +83,7 @@ class AccountController extends Controller
 			$account = Account::findOrFail($accountId);
 
 			if(Gate::denies('update', $account)){
-				return "Fuck you hacked";
+				return "Hey guy, Don't try to hack, This account is not belong to you.";
 			}
 			if(Input::get('current_password') != $account->password)
 			{
@@ -119,7 +119,7 @@ class AccountController extends Controller
 			               ->withInput();
 		}
 		if(Gate::denies('update', $account)){
-			return "Fuck you hacked";
+			return "Hey guy, Don't try to hack, This account is not belong to you.";
 		}
 
 		$password = Str::random(16);
