@@ -12,6 +12,12 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
+                    @if(count($games) == 0)
+                        <div class="callout callout-danger">
+                            <p>Bạn không có account trong bất cứ game nào mà chúng tôi cung cấp, Để có thể chơi game, Hãy xem qua danh sách game, chọn game mà bạn thích và tạo game account.</p>
+                            <div><a href="{{ route('game.index') }}">Danh sách game</a></div>
+                        </div>
+                    @else
                     <table class="table table-hover table-striped">
                         <tbody><tr>
                             <th>Name</th>
@@ -44,8 +50,10 @@
                                 </td>
                             </tr>
                         @endforeach
+
                         </tbody>
                     </table>
+                    @endif
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">

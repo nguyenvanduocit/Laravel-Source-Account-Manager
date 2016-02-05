@@ -10,12 +10,7 @@
                     <hr>
                     <p>{{ $game->description }}</p>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer center-text">
-                    <a href="{{ $game->download_url }}" class="btn btn-app btn-success" style="margin-left: 0">
-                        <i class="fa fa-download"></i> Download client
-                    </a>
-                </div>
+
             </div>
         </div>
         <div class="col-md-8">

@@ -34,26 +34,33 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="mygame">
-                        <table class="table table-hover table-striped">
-                            <tbody><tr>
-                                <th>Name</th>
-                                <th>Account</th>
-                                <th class="center-text">Actions</th>
-                            </tr>
-                            @foreach ($games as $game)
-                                <tr>
-                                    <td><a href="{{ route('game.show', ['d' => $game->game_id]) }}">{{ $game->name }}</a></td>
-                                    <td><a href="{{ route('account.show', ['id'=>$game->account_id]) }}">{{ $game->username }}</a></td>
-                                    <td class="center-text">
-                                        <a href="{{ route('account.show', ["id" => $game->account_id]) }}" class="btn btn-xs btn-default">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                    </td>
+                        @if(count($games) == 0)
+                            <div class="callout callout-danger">
+                                <p>Bạn không có account trong bất cứ game nào mà chúng tôi cung cấp, Để có thể chơi game, Hãy xem qua danh sách game, chọn game mà bạn thích và tạo game account.</p>
+                                <div><a href="{{ route('game.index') }}">Danh sách game</a></div>
+                            </div>
+                        @else
+                            <table class="table table-hover table-striped">
+                                <tbody><tr>
+                                    <th>Name</th>
+                                    <th>Account</th>
+                                    <th class="center-text">Actions</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        {!! $games->render() !!}
+                                @foreach ($games as $game)
+                                    <tr>
+                                        <td><a href="{{ route('game.show', ['d' => $game->game_id]) }}">{{ $game->name }}</a></td>
+                                        <td><a href="{{ route('account.show', ['id'=>$game->account_id]) }}">{{ $game->username }}</a></td>
+                                        <td class="center-text">
+                                            <a href="{{ route('account.show', ["id" => $game->account_id]) }}" class="btn btn-xs btn-default">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {!! $games->render() !!}
+                        @endif
                     </div>
                 </div>
             </div>

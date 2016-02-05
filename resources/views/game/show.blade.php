@@ -10,20 +10,27 @@
                     <hr>
                     <p>{{ $game->description }}</p>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer center-text">
-                    <a href="{{ $game->download_url }}" class="btn btn-app btn-success" style="margin-left: 0">
-                        <i class="fa fa-download"></i> Download client
-                    </a>
-                    @if(isset($account))
-                        <a href="{{ route('account.show', ["id" => $account->id]) }}" class="btn btn-app">
-                            <i class="fa fa-user"></i> My Account
+            </div>
+            <div class="box box-primary">
+                <div class="box-body center-text">
+                    <div class="row">
+                        <div class="col-md-6">
+                        <a href="{{ $game->download_url }}" class="btn btn-app btn-success no-margin" style="width: 100%">
+                            <i class="fa fa-download"></i> Download client
                         </a>
-                    @else
-                    <a href="{{ route('account.create', ["id" => $game->id]) }}" class="btn btn-app">
-                        <i class="fa fa-user-plus"></i> Create Account
-                    </a>
-                    @endif
+                        </div>
+                        <div class="col-md-6">
+                        @if(isset($account))
+                            <a href="{{ route('account.show', ["id" => $account->id]) }}" class="btn btn-app no-margin" style="width: 100%">
+                                <i class="fa fa-user"></i> My Account
+                            </a>
+                        @else
+                            <a href="{{ route('account.create', ["id" => $game->id]) }}" class="btn btn-app no-margin" style="width: 100%">
+                                <i class="fa fa-user-plus"></i> Create Account
+                            </a>
+                        @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
