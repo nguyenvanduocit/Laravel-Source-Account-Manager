@@ -24,11 +24,9 @@
                                 <td>{{ $permission->id }}</td>
                                 <td>{{ $permission->name }}</td>
                                 <td>
-                                <td>
                                     @foreach($permission->roles as $role)
                                         <span class="label label-primary">{{ $role->name }}</span>
                                     @endforeach
-                                </td>
                                 </td>
                                 <td>{{ $permission->description }}</td>
                             </tr>
