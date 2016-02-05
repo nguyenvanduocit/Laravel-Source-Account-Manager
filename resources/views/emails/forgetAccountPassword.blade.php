@@ -409,7 +409,7 @@
                                         <h1>Account Password Request</h1>
                                         <p>Bạn vừa yêu cầu lấy lại mật khẩu trong game {{ $account->game->game }}.</p>
                                         <p>Chúng tôi đã tạo cho bạn một mật khẩu ngẫu nhiên : {{ $password }}.</p>
-                                        <p>Nếu bạn không thích nó, bạn có thể đổi lại mật khẩu khác tại trang <a href="{{ route('account.edit') }}">Edit Account</a></p>
+                                        <p>Nếu bạn không thích nó, bạn có thể đổi lại mật khẩu khác tại trang <a href="{{ route('account.edit', ['id'=>$account->id]) }}">Edit Account</a></p>
                                     </td>
                                 </tr>
                             </table>
