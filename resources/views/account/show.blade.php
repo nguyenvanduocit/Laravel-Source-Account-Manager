@@ -5,7 +5,7 @@
         <div class="col-md-3">
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user4-128x128.jpg" alt="User profile picture">
+                    <img class="profile-user-img img-responsive img-circle" src="{{  Auth::user()->avatarUrl() }}" alt="User profile picture">
 
                     <h3 class="profile-username text-center">{{ $account->username }}</h3>
 
@@ -37,17 +37,15 @@
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ $account->game->name }}</h3>
+                    <h3 class="box-title"><a href="{{ route('game.show', ['id'=>$account->game->id]) }}">{{ $account->game->name }}</a></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <strong><i class="fa fa-book margin-r-5"></i> Giới thiệu</strong>
                     <p class="text-muted">
                         {{ $account->game->description }}
                     </p>
                     <hr>
-                    <strong><i class="fa fa-map-marker margin-r-5"></i> Tải về</strong>
-                    <p class="text-muted"><a class="label label-danger" href="{{ $account->game->download_url }}">Client</a></p>
+                    <p><a class="btn btn-default" href="{{ $account->game->download_url }}">Download client</a>&nbsp;<a class="btn btn-default" href="{{ route('game.show', ["id" => $account->game->id]) }}">View detail</a></p>
                 </div>
                 <!-- /.box-body -->
             </div>
