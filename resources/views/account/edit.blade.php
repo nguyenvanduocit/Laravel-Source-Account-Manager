@@ -18,7 +18,7 @@
 
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="username" disabled readonly value="{{ old('username')?old('username'):$account->username }}">
-
+                                    <span class="help-block">Username is not editable.</span>
                                     @if ($errors->has('username'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
@@ -46,7 +46,7 @@
 
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password" value="">
-
+                                    <span class="help-block">Don't use your common password, This password will be save as paint text, only you and administrator can see this password.</span>
                                     @if ($errors->has('password'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>

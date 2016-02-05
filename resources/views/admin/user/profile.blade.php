@@ -47,9 +47,14 @@
                                     <td>{{ $game->name }}</td>
                                     <td>{{ $game->username }}</td>
                                     <td class="center-text">
-                                        <a href="{{ route('account.show', ["id" => $game->account_id]) }}" class="btn btn-xs btn-default">
+                                        <a href="{{ route('admin.account.show', ["id" => $game->account_id]) }}" class="btn btn-xs btn-default">
                                             <i class="fa fa-eye"></i>
                                         </a>
+                                        @permission('manage_account')
+                                        <a href="{{ route('admin.account.edit', ["id" => $game->account_id]) }}" class="btn btn-xs btn-default">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        @endpermission
                                     </td>
                                 </tr>
                             @endforeach
