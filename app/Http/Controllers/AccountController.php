@@ -43,7 +43,7 @@ class AccountController extends Controller
 
 	public function getCreate($gameId){
 		$game = Game::findOrFail($gameId);
-		return view('account.create',['game'=>$game]);
+		return view('account.create',['game'=>$game, 'page_title'=>'Create game account']);
 	}
 
 	public function postStore(){
@@ -70,7 +70,7 @@ class AccountController extends Controller
 		if(Gate::denies('update', $account)){
 			return "Hey guy, Don't try to hack, This account is not belong to you.";
 		}
-		return view('account.edit', ['account'=>$account]);
+		return view('account.edit', ['account'=>$account, 'page_title'=>'Edit account']);
 	}
 
 	public function patchUpdate($accountId){
@@ -100,7 +100,7 @@ class AccountController extends Controller
 	}
 	public function getPassword($gameId){
 		$game = Game::findOrFail($gameId);
-		return view('account.forgotPassword', ['game'=>$game]);
+		return view('account.forgotPassword', ['game'=>$game, 'page_title'=>'Reset password']);
 	}
 	public function postPassword($gameId){
 		$rule = [
@@ -132,8 +132,9 @@ class AccountController extends Controller
 		});
 		return Redirect::back();
 	}
+
 	public function getMyGames(){
 		$games = Auth::user()->accounts()->withTrashed()->join('games', 'accounts.game_id', '=', 'games.id')->paginate(10, ['accounts.id as account_id', 'accounts.username', 'accounts.deleted_at', 'games.id as game_id', 'games.name', 'games.description']);
-		return view('account.mygames', ['games'=>$games]);
+		return view('account.mygames', ['games'=>$games, 'page_title'=>'My games']);
 	}
 }
