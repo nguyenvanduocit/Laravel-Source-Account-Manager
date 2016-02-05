@@ -16,7 +16,7 @@
 
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="username" value="{{ old('username') }}">
-
+                                    <span class="help-block">Username is not editable.</span>
                                     @if ($errors->has('username'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
