@@ -90,7 +90,7 @@ class AuthController extends Controller
     /**
      * Obtain the user information from GitHub.
      *
-ß     */
+     */
     public function handleProviderCallback()
     {
 

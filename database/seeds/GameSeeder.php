@@ -13,15 +13,9 @@ class GameSeeder extends Seeder
     {
         DB::table('games')->insert([
             'name' => 'Counter-Strike: Global Offensive',
-            'download_url' => 'http://fucking.com',
+            'download_url' => 'http://cs4vn.vn/',
             'video_id'=>'edYCtaNueQY',
-            'description' => 'Free for every one'
-        ]);
-        DB::table('games')->insert([
-            'name' => 'CSGO Casual',
-            'download_url' => 'http://fucking.com',
-            'video_id'=>'Wt2rGmUmm2A',
-            'description' => 'Free for every one'
+            'description' => 'ounter-Strike: Global Offensive is an online first-person shooter developed by Hidden Path Entertainment and Valve Corporation. It is the fourth game in the main Counter-Strike franchise.'
         ]);
     }
 }

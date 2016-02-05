@@ -11,7 +11,7 @@ class AccountSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('accounts')->insert([
+        /*DB::table('accounts')->insert([
             'username' => 'account1',
             'password' => 'password',
             'user_id' => '1',
@@ -28,6 +28,6 @@ class AccountSeeder extends Seeder
             'password' => 'password',
             'user_id' => '2',
             'game_id' => '1'
-        ]);
+        ]);*/
     }
 }
