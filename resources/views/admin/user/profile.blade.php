@@ -22,6 +22,9 @@
                             <b>Joined from</b> <span class="pull-right">{{ $user->created_at->format('Y-d-m') }}</span>
                         </li>
                     </ul>
+                    @permission('manage_account')
+                    <a href="{{ route('admin.user.edit', ["id" => $user->id]) }}" class="btn btn-primary btn-block"><b>EDIT</b></a>
+                    @endpermission
                 </div>
                 <!-- /.box-body -->
             </div>

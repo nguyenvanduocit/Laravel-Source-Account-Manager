@@ -19,6 +19,7 @@
                         <thead>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Facebook</th>
                         <th>Role</th>
                         <th>Create day</th>
                         <th class="center-text">Action</th>
@@ -27,7 +28,8 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td><a href="{{ route('admin.user.show', ["id" => $user->id]) }}">{{ $user->name }}</a></td>
+                                <td><a href="http://facebook.com/{{ $user->facebook_id }}" target="_blank">{{ $user->facebook_id }}</a></td>
                                 <td>
                                     @foreach($user->roles as $role)
                                         <span class="label label-primary">{{ $role->name }}</span>
