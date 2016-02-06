@@ -21,7 +21,7 @@ class UserController extends Controller
 		'roles'=>'required|exists:roles,id'
 	];
 	public function index(){
-		$users  = User::with('roles')->paginate(10);
+		$users  = User::with('roles')->paginate(20);
 		return view('admin.user.index', ['users' => $users]);
 	}
 	public function edit($userId){

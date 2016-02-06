@@ -20,10 +20,10 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>password</th>
+                    <th>User</th>
                     <th>Facebook</th>
                     <th>status</th>
                     <th>Game</th>
-                    <th>User</th>
                     <th class="center-text">Action</th>
                     </thead>
                     <tbody>
@@ -32,6 +32,7 @@
                             <td>{{ $account->id }}</td>
                             <td><a href="{{ route('admin.account.show', ["id" => $account->id]) }}">{{ $account->username }}</a></td>
                             <td>{{ $account->password }}</td>
+                            <td><a href="{{ route('admin.user.show', ['id'=>$account->user->id]) }}">{{ $account->user->name }}</a></td>
                             <td><a href="http://facebook.com/{{ $account->user->facebook_id }}" target="_blank">{{ $account->user->facebook_id }}</a></td>
                             <td>
                                 @if($account->trashed())
@@ -41,7 +42,6 @@
                                 @endif
                             </td>
                             <td><a href="{{ route('game.show', ["id" => $account->game->id]) }}">{{ $account->game->name }}</a></td>
-                            <td><a href="{{ route('admin.user.show', ['id'=>$account->user->id]) }}">{{ $account->user->name }}</a></td>
                             <td class="center-text">
                                 <a href="{{ route('admin.account.show', ["id" => $account->id]) }}" class="btn btn-xs btn-default">
                                     <i class="fa fa-eye"></i>

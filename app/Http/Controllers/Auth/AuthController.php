@@ -101,12 +101,20 @@ class AuthController extends Controller
         $defaultData = [
 
         ];
-        $fbUser = Socialite::driver('facebook')->user();
+        try{
+            $fbUser = Socialite::driver('facebook')->user();
+        }
+        catch(Exception $e){
+            return $e->getMessage();
+        }
         $rawData=array_merge($defaultData, $fbUser->getRaw());
 
         if(!$rawData['verified'])
         {
-            return Redirect::to('/');
+            return 'Your account must be verified by facebook to register';
+        }
+        if(!isset($rawData['email'])){
+            return "Your facebook must have email to register.";
         }
 
         $facebook_id = $rawData['id'];

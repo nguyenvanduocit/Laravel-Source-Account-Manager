@@ -27,7 +27,7 @@ class AccountController extends Controller
 	}
 
 	public function index(){
-		$accounts = Account::with(['user', 'game'])->withTrashed()->paginate(10);
+		$accounts = Account::with(['user', 'game'])->withTrashed()->paginate(20);
 		return view('admin.account.index', ['accounts'=>$accounts]);
 	}
 	public function show($accountId){
