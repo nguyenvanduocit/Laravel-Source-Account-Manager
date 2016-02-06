@@ -42,6 +42,7 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Account</th>
+                                <th>Password</th>
                                 <th class="center-text">Actions</th>
                             </tr>
                             @foreach ($games as $game)
@@ -49,6 +50,7 @@
                                     <td>{{ $game->game_id }}</td>
                                     <td>{{ $game->name }}</td>
                                     <td>{{ $game->username }}</td>
+                                    <td>{{ $game->password }}</td>
                                     <td class="center-text">
                                         <a href="{{ route('admin.account.show', ["id" => $game->account_id]) }}" class="btn btn-xs btn-default">
                                             <i class="fa fa-eye"></i>

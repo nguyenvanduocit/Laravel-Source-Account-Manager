@@ -72,7 +72,7 @@ class UserController extends Controller
 	}
 	public function show($userId){
 		$user = User::findOrFail($userId);
-		$games = $user->accounts()->withTrashed()->join('games', 'accounts.game_id', '=', 'games.id')->paginate(10, ['accounts.id as account_id', 'accounts.username', 'games.id as game_id', 'games.name', 'games.description']);
+		$games = $user->accounts()->withTrashed()->join('games', 'accounts.game_id', '=', 'games.id')->paginate(10, ['accounts.id as account_id', 'accounts.username','accounts.password', 'games.id as game_id', 'games.name', 'games.description']);
 
 		return view('admin.user.profile', ['user'=>$user, 'games'=>$games]);
 	}
