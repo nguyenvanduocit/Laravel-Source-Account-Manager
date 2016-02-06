@@ -28,7 +28,7 @@
                         @foreach ($games as $game)
                             <tr>
                                 <td>
-                                    {{ $game->name }}
+                                    <a href="{{ route('account.show', ["id" => $game->account_id]) }}">{{ $game->name }}</a>
                                 </td>
                                 <td>{{ $game->username }}</td>
                                 <td>
