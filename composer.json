@@ -11,7 +11,8 @@
         "laravel/socialite" : "^2.0",
         "nguyenvanduocit/entrust": "5.2.x-dev",
         "barryvdh/laravel-ide-helper": "^2.1",
-        "almasaeed2010/adminlte": "^2.3"
+        "almasaeed2010/adminlte": "^2.3",
+        "xpaw/php-source-query-class": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

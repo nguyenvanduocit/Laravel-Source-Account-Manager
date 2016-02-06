@@ -46,10 +46,11 @@
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>Status</th>
+                                <th class="center-text">Actions</th>
                             </tr>
                             @foreach ($servers as $server)
                                 <tr>
-                                    <td>{{ $server->name }}</td>
+                                    <td><a href="{{ route('server.show',['id'=>$server->id]) }}">{{ $server->name }}</a></td>
                                     <td>{{ $server->ip }}:{{ $server->port }}</td>
                                     <td>
                                         @if($server->status == 1)
@@ -57,6 +58,11 @@
                                         @else
                                             <span class="label label-danger">DOWN</span>
                                         @endif
+                                    </td>
+                                    <td class="center-text">
+                                        <a href="{{ route('server.show',['id'=>$server->id]) }}" class="btn btn-xs btn-default">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

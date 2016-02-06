@@ -47,6 +47,7 @@ Route::group(['middleware' => ['web','auth']], function() {
         'postPassword'=>'account.postPassword',
     ]);
     Route::resource('user', 'UserController');
+    Route::resource('server', 'ServerController');
     Route::controller('game', 'GameController',[
         'getIndex' => 'game.index',
         'getShow' => 'game.show'

@@ -10,9 +10,6 @@
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>Id</b> <span class="pull-right">{{ $server->id }}</span>
-                        </li>
-                        <li class="list-group-item">
                             <b>Address</b> <span class="pull-right">{{ $server->ip }}:{{ $server->port }}</span>
                         </li>
                         <li class="list-group-item">
