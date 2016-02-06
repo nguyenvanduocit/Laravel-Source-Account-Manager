@@ -21,10 +21,12 @@ elixir(function(mix) {
         "destroylink.js"
         ])
         .scripts([
-            "vendor/almasaeed2010/adminlte/dist/js/app.js"
-        ], "public/js/vendor.js",'./')
+            "vendor/almasaeed2010/adminlte/dist/js/app.js",
+            "node_modules/underscore/underscore.js",
+        ],  "public/js/vendor.js",'./')
+        .copy("resources/assets/js/serverstatus.js",'public/js/serverstatus.js')
         .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts')
         .copy('node_modules/bootstrap-sass/assets/fonts', 'public/build/fonts')
         .copy('vendor/almasaeed2010/adminlte/plugins', 'public/js/plugins')
-        .version(['public/js/all.js','public/js/vendor.js','public/css/app.css', 'public/css/vendor.css','public/js/plugins/**/*', 'public/fonts/bootstrap/**/*']);
+        .version(['public/js/all.js','public/js/vendor.js','public/js/serverstatus.js','public/css/app.css', 'public/css/vendor.css','public/js/plugins/**/*', 'public/fonts/bootstrap/**/*']);
 });

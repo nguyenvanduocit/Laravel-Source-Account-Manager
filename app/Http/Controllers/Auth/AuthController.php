@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 use Mockery\CountValidator\Exception;
@@ -147,7 +148,7 @@ class AuthController extends Controller
             catch(Exception $e){
                 return $e->getMessage();
             }
-            return Redirect::to('/');
+            return Redirect::to('/')->withSuccess(['success'=>'Login success!']);
         }
     }
 }

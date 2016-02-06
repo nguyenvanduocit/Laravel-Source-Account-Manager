@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="box box-primary">
                 <div class="box-body box-profile">
 
@@ -19,15 +19,7 @@
                                 <span class="label label-danger pull-right">DOWN</span>
                             @endif
                         </li>
-                        @if($status)
-                            <li class="list-group-item">
-                                <b>Map</b> <span class="pull-right">{{ $status['info']['Map'] }}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Players</b> <span class="pull-right">{{ $status['info']['Players'] }}({{$status['info']['Bots']}} bot)/{{ $status['info']['MaxPlayers'] }}</span>
-                            </li>
-                        @else
-                        @endif
+                        <div id="infoContainer"></div>
                     </ul>
                 </div>
                 <!-- /.box-body -->
@@ -47,32 +39,67 @@
                 <!-- /.box-body -->
             </div>
         </div>
-        @if($status)
         <div class="col-md-8">
+
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Current players</h3>
+                    <h3 class="box-title">Players</h3>
+                    <!-- /.box-tools -->
                 </div>
+                <!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <table class="table table-hover table-striped">
                         <thead>
-                            <th>Name</th>
-                            <th>Score</th>
-                            <th>Time</th>
-                        </thead>
-                        <tbody>
-                        @foreach($status['players'] as $player)
                             <tr>
-                                <td>{{ $player['Name'] }}</td>
-                                <td>{{ $player['Frags'] }}</td>
-                                <td>{{ round($player['Time']/60) }} minutes</td>
+                                <th>Name</th>
+                                <th>Score</th>
+                                <th>Play time</th>
                             </tr>
-                        @endforeach
-                        </tbody>
+                        </thead>
+                        <tbody id="playersContainer"></tbody>
                     </table>
                 </div>
+                <div id="playersInfoOverlay" class="overlay hidden">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
             </div>
+            <script type="text/template" id="info_template">
+                <li class="list-group-item"><b>Map</b> <span class="pull-right"><%= Map %></span></li>
+                <li class="list-group-item"><b>Players</b> <span class="pull-right"><%= Players%>/<%= MaxPlayers %> (<%= Bots %>)bots</span></li>
+            </script>
+            <script type="text/template" id="players_template">
+                <% _.each(players, function(player){%>
+                    <tr>
+                        <td><%= player.Name %></td>
+                        <td><%= player.Frags %></td>
+                        <td><%= Math.round(player.Time/60) %>s</td>
+                    </tr>
+                <% }) %>
+            </script>
         </div>
-        @endif
     </div>
+@endsection
+@section('footer')
+    <script src="{{ elixir('js/serverstatus.js') }}"></script>
+    <script>
+    (function ($) {
+        $( document ).ready(function() {
+            var options = {
+                ip:'{{ $server->ip  }}',
+                port: {{ $server->port  }},
+                appIp: 730,
+                infoTemplate: $('#info_template').html(),
+                infoContainer:$('#infoContainer'),
+                playersTemplate:$('#players_template').html(),
+                playersContainer:$('#playersContainer'),
+                onError:function(){ $('#playersContainer').html('Can not load serve info.') },
+                beforeSend:function(){ $('#playersInfoOverlay').removeClass('hidden'); },
+                always:function(){ $('#playersInfoOverlay').addClass('hidden'); }
+
+            };
+            var serverStatusTable = new ServerStatusTable(options);
+            serverStatusTable.update();
+        });
+    })(jQuery);
+    </script>
 @endsection
