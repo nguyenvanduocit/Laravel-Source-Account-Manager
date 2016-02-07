@@ -9,7 +9,11 @@
                     <h3 class="box-title">Account managerment</h3>
 
                     <div class="box-tools pull-right">
-                        <a href="{{ route('admin.user.create')  }}" class="btn btn-sm btn-primary">New User</a>
+                        <form action="{{ route('admin.user.search') }}" method="get" class="form-inline" style="display: inline-block">
+                            <input placeholder="Type name to search..." type="text" class="form-control input-sm" value="{{ app('request')->input('name') }}" name="name" >
+                            <button class="form-control input-sm btn btn-sm btn-primary">Search</button>
+                        </form>
+                        <a href="{{ route('admin.user.create')  }}" class="btn btn-sm btn-danger">New User</a>
                     </div>
                     <!-- /.box-tools -->
                 </div>

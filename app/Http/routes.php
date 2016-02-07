@@ -71,6 +71,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['web'
 
     Route::group(['middleware' => ['role:administrator']], function() {
         Route::resource('role', 'RoleController');
+        Route::get('user/search', 'UserController@getSearch')->name('admin.user.search');
         Route::resource('user', 'UserController');
         Route::resource('permission', 'PermissionController');
     });

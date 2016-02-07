@@ -76,4 +76,15 @@ class UserController extends Controller
 
 		return view('admin.user.profile', ['user'=>$user, 'games'=>$games]);
 	}
+
+	public function getSearch(){
+		if(!Input::has('name'))
+		{
+			return Redirect::to(route('admin.user.index'));
+		}
+		$name = Input::get('name');
+		$users = User::with(['roles'])->where('name','like',"%{$name}%")->paginate(20);
+		$pageTitle = 'Search for : '.$name;
+		return view('admin.user.index', ['users'=>$users, 'page_title'=>$pageTitle]);
+	}
 }
