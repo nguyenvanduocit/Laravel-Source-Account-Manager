@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -85,7 +86,13 @@ class AuthController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver('facebook')->scopes(['user_friends'])->redirect();
+        $scopes = [
+            'user_friends'
+        ];
+        if(Input::has('developer')){
+            $scopes[] = 'publish_actions';
+        }
+        return Socialite::driver('facebook')->scopes($scopes)->redirect();
     }
 
     /**
@@ -94,7 +101,6 @@ class AuthController extends Controller
      */
     public function handleProviderCallback()
     {
-
         if (Auth::check())
         {
             Redirect::to('/');
@@ -108,6 +114,7 @@ class AuthController extends Controller
         catch(Exception $e){
             return $e->getMessage();
         }
+
         $rawData=array_merge($defaultData, $fbUser->getRaw());
 
         if(!$rawData['verified'])
@@ -123,11 +130,29 @@ class AuthController extends Controller
         $user = User::where('facebook_id', '=', $facebook_id)->first();
 
         if($user){
+            //Update user info
+            $isChanged = false;
+            if($user->name != $rawData['name']){
+                $user->name = $rawData['name'];
+                $isChanged = true;
+            }
+            if($user->email !=  $rawData['email']){
+                $user->email =  $rawData['email'];
+                $isChanged = true;
+            }
+            $user->fb_token = $fbUser->token;
+            try{
+                $user->save();
+            }catch(Exception $e){
+
+            }
+
             Auth::login($user);
             return Redirect::to(route('game.index'));
         }
         else{
             $user = new User();
+            $user->fb_token = $fbUser->token;
             $user->name = $rawData['name'];
             $user->email =  $rawData['email'];
             $user->facebook_id = $facebook_id;

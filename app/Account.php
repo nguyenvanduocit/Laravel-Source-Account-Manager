@@ -49,11 +49,6 @@ class Account extends Model
 			return true;
 		});
 
-		static::saving(function($account){
-			$suser = Suser::where('identity','=', $account->username)->where('authtype','=','name')->first();
-			return $suser == null;
-		});
-
 		static::saved(function ($account) {
 			$suser = Suser::where('account_id','=', $account->id)->first();
 			if(!$suser){

@@ -107,7 +107,7 @@ class AccountController extends Controller
 	public function postRestore($accountId){
 		$account = Account::onlyTrashed()->findOrFail($accountId);
 		$account->restore();
-		return Redirect::to(route('admin.account.index'));
+		return Redirect::back();
 	}
 
 	public function getSearch(){

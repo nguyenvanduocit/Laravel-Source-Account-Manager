@@ -12,7 +12,7 @@
         "nguyenvanduocit/entrust": "5.2.x-dev",
         "barryvdh/laravel-ide-helper": "^2.1",
         "almasaeed2010/adminlte": "^2.3",
-        "xpaw/php-source-query-class": "^1.0"
+        "facebook/php-sdk-v4": "^5.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
