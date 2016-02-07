@@ -105,8 +105,19 @@ class AccountController extends Controller
 	}
 
 	public function postRestore($accountId){
-		$account = Account::withTrashed()->findOrFail($accountId);
+		$account = Account::onlyTrashed()->findOrFail($accountId);
 		$account->restore();
 		return Redirect::to(route('admin.account.index'));
+	}
+
+	public function getSearch(){
+		if(!Input::has('username'))
+		{
+			return Redirect::to(route('admin.account.index'));
+		}
+		$username = Input::get('username');
+		$accounts = Account::with(['user', 'game'])->withTrashed()->where('username','like',"%{$username}%")->paginate(20);
+		$pageTitle = 'Search for : '.$username;
+		return view('admin.account.index', ['accounts'=>$accounts, 'page_title'=>$pageTitle]);
 	}
 }

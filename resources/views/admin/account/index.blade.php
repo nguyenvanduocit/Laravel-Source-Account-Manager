@@ -9,12 +9,17 @@
                     <h3 class="box-title">Account managerment</h3>
 
                     <div class="box-tools pull-right">
-                        <a href="{{ route('admin.account.create')  }}" class="btn btn-sm btn-primary">New Account</a>
+                        <form action="{{ route('admin.account.search') }}" method="get" class="form-inline" style="display: inline-block">
+                            <input placeholder="Type username to search..." type="text" class="form-control input-sm" value="{{ app('request')->input('username') }}" name="username" >
+                            <button class="form-control input-sm btn btn-sm btn-primary">Search</button>
+                        </form>
+                        <a href="{{ route('admin.account.create')  }}" class="btn btn-sm btn-danger">New Account</a>
                     </div>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
+                @if(count($accounts) > 0)
                 <table class="table table-hover table-striped">
                     <thead>
                     <th>Id</th>
@@ -68,6 +73,12 @@
                     @endforeach
                     </tbody>
                     </table>
+                @else
+                    <div class="alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        Không có account nào được tìm thấy
+                    </div>
+                @endif
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">

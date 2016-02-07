@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Mockery\CountValidator\Exception;
 
 class Account extends Model
 {
@@ -18,20 +19,41 @@ class Account extends Model
 	protected $fillable = [
 		'username', 'password', 'user_id', 'game_id'
 	];
+
 	public function game(){
 		return $this->belongsTo('App\Game');
 	}
+
 	public function user(){
 		return $this->belongsTo('App\User');
 	}
+
 	public static function boot(){
 		parent::boot();
-		static::deleted(function ($account) {
+
+		static::deleting(function ($account) {
 			$suser = Suser::where('account_id','=', $account->id)->first();
 			if($suser){
-				$suser->delete();
+				try {
+					if ( $account->forceDeleting ) {
+						$suser->delete();
+					} else {
+						$suser->flags = 's';
+						$suser->save();
+					}
+				}
+				catch(Exception $e){
+					return false;
+				}
 			}
+			return true;
 		});
+
+		static::saving(function($account){
+			$suser = Suser::where('identity','=', $account->username)->where('authtype','=','name')->first();
+			return $suser == null;
+		});
+
 		static::saved(function ($account) {
 			$suser = Suser::where('account_id','=', $account->id)->first();
 			if(!$suser){
@@ -41,11 +63,31 @@ class Account extends Model
 			$suser->authtype = 'name';
 			$suser->identity = $account->username;
 			$suser->password = $account->password;
-			$suser->flags = 't';
+			if(!$suser->exists) {
+				$suser->flags = 't';
+			}
 			$suser->name = '';
 			$suser->immunity = 0;
-			$suser->save();
+			try{
+				$suser->save();
+			}catch(Exception $e){
+				//TODO Notice that can not create sm account
+			}
 
+		});
+
+		static::restoring(function($account){
+			$suser = Suser::where('account_id','=', $account->id)->first();
+			if($suser){
+				$suser->flags = 't';
+				try{
+					$suser->save();
+				}
+				catch(Exception $e){
+					return false;
+				}
+			}
+			return true;
 		});
 	}
 }

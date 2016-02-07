@@ -75,7 +75,7 @@
                     <tr>
                         <td><%= player.Name %></td>
                         <td><%= player.Frags %></td>
-                        <td><%= Math.round(player.Time/60) %>s</td>
+                        <td><%= Math.round(player.Time/60) %>m</td>
                     </tr>
                 <% }) %>
             </script>
