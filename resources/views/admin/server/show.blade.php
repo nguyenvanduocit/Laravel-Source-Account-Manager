@@ -57,6 +57,7 @@
                                 <th>Name</th>
                                 <th>Score</th>
                                 <th>Play time</th>
+                                <th class="center-text">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="playersContainer"></tbody>
@@ -73,9 +74,17 @@
             <script type="text/template" id="players_template">
                 <% _.each(players, function(player){%>
                     <tr>
-                        <td><%= player.Name %></td>
+                        <td><a href="{{ route('admin.account.search')  }}?username=<%= player.Name %>"><%= player.Name %></a></td>
                         <td><%= player.Frags %></td>
                         <td><%= Math.round(player.Time/60) %>m</td>
+                        <td class="center-text">
+                        <a href="{{ route('admin.account.search')  }}?username=<%= player.Name %>" title="Search" class="btn btn-xs btn-default">
+                            <i class="fa fa-search"></i>
+                        </a>
+                        <a href="#" title="Kick" class="btn btn-xs btn-default">
+                            <i class="fa fa-ban"></i>
+                        </a>
+                        </td>
                     </tr>
                 <% }) %>
             </script>
