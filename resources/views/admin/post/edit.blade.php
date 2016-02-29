@@ -20,14 +20,15 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <!-- /.box-header -->
-                <form role="form" method="POST" action="{{ route('admin.post.store') }}">
+                <form role="form" method="POST" action="{{ route('admin.post.update',['id'=>$post->id]) }}">
                 <div class="box-body">
                         {!! csrf_field() !!}
+                    <input type="hidden" name="_method" value="PATCH">
                         @include('partials.alerts.errors')
                         <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                             <label class="control-label">Title</label>
 
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="title" value="{{ old('title')?old('title'):$post->title }}">
 
                             @if ($errors->has('title'))
                                 <span class="help-block">
@@ -38,7 +39,7 @@
 
                         <div class="form-group f{{ $errors->has('content') ? ' has-error' : '' }}">
                             <label class="">Content</label>
-                            <textarea id="post_content" class="form-control" name="content">{{ old('content') }}</textarea>
+                            <textarea id="post_content" class="form-control" name="content">{{ old('content')?old('content'):$post->content }}</textarea>
 
                             @if ($errors->has('content'))
                                 <span class="help-block">

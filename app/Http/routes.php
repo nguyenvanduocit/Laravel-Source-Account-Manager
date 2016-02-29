@@ -24,7 +24,6 @@
 
 /** \Illuminate\Support\Facades\Route Route */
 Route::group(['middleware' => 'web'], function () {
-
     // Authentication Routes...
     $this->get('login', 'Auth\AuthController@showLoginForm');
     $this->get('logout', 'Auth\AuthController@logout');
@@ -51,6 +50,7 @@ Route::group(['middleware' => ['web','auth']], function() {
         'getIndex' => 'game.index',
         'getShow' => 'game.show'
     ]);
+    Route::resource('post', 'PostController');
 });
 
 Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['web','auth','role:moderator']], function() {

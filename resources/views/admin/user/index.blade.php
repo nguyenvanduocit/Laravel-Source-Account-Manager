@@ -26,7 +26,6 @@
                         <th>Facebook</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>Create day</th>
                         <th class="center-text">Action</th>
                         </thead>
                         <tbody>
@@ -41,7 +40,6 @@
                                         <span class="label label-primary">{{ $role->name }}</span>
                                     @endforeach
                                 </td>
-                                <td>{{ $user->created_at->format('Y-m-d')  }}</td>
                                 <td class="center-text">
                                     <a href="{{ route('admin.user.show', ["id" => $user->id]) }}" class="btn btn-xs btn-default">
                                         <i class="fa fa-eye"></i>

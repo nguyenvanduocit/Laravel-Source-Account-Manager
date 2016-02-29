@@ -22,6 +22,9 @@
     @permission("manage_role")
     <li {{ Request::is('admin/role*')? 'class=active' : '' }}><a href="{{ route('admin.role.index') }}"><i class="fa fa-magic"></i><span>User Role</span></a></li>
     @endpermission
+    @permission("manage_content")
+    <li {{ Request::is('admin/post*')? 'class=active' : '' }}><a href="{{ route('admin.post.index') }}"><i class="fa fa-magic"></i><span>Post</span></a></li>
+    @endpermission
     @role('administrator')
     <li {{ Request::is('admin/permission*')? 'class=active' : '' }}><a href="{{ route('admin.permission.index') }}"><i class="fa fa-magic"></i><span>User Permission</span></a></li>
     @endrole

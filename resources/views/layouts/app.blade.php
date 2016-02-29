@@ -24,6 +24,7 @@
         ga('send', 'pageview');
 
     </script>
+    @yield('header')
 </head>
 <body id="app-layout" class="skin-blue">
     <div class="wrapper">

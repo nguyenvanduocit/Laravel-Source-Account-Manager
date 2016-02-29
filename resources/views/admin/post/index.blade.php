@@ -5,7 +5,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Post managerment</h3>
+                    <h3 class="box-title">Post management</h3>
 
                     <div class="box-tools pull-right">
                         <form action="{{ route('admin.account.search') }}" method="get" class="form-inline" style="display: inline-block">
@@ -30,12 +30,17 @@
                         @foreach ($posts as $post)
                             <tr>
                                 <td>{{ $post->id }}</td>
-                                <td>{{ $post->title }}</td>
-                                <td>{{ $post->author->name }}</td>
+                                <td><a href="{{ route('admin.post.show',['id'=>$post->id]) }}">{{ $post->title }}</a></td>
+                                <td>{{ $post->user->name }}</td>
                                 <td class="center-text">
-                                    <a href="{{ route('admin.account.show', ["id" => $account->id]) }}" class="btn btn-xs btn-default">
-                                        <i class="fa fa-eye"></i>
+                                    @permission('manage_content')
+                                    <a href="{{ route('admin.post.edit', ["id" => $post->id]) }}" class="btn btn-xs btn-default">
+                                        <i class="fa fa-pencil"></i>
                                     </a>
+                                    <a href="{{ route('admin.post.destroy', ["id" => $post->id]) }}" data-method="delete" data-confirm="Are you sure ?" data-token="{{ csrf_token() }}" class="btn btn-xs btn-default">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    @endrole
                                 </td>
                             </tr>
                         @endforeach
