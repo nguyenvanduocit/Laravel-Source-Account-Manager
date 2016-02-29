@@ -57,10 +57,16 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['web'
 
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 
+
+
     Route::group(['middleware' => ['role:account_manager|administrator']], function() {
         Route::get('account/search', 'AccountController@getSearch')->name('admin.account.search');
         Route::resource('account', 'AccountController');
         Route::post('account/restore/{accountId}', 'AccountController@postRestore')->name('admin.account.restore');
+    });
+
+    Route::group(['middleware' => ['role:content_manager|administrator']], function() {
+        Route::resource('post', 'PostController');
     });
 
     Route::group(['middleware' => ['role:game_manager|administrator']], function() {

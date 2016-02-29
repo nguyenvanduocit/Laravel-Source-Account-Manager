@@ -42,4 +42,7 @@ class User extends Authenticatable
     public function avatarUrl(){
         return 'https://graph.facebook.com/'.$this->facebook_id.'/picture?type=large&width=500&height=500';
     }
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
 }

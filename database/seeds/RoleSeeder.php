@@ -41,5 +41,11 @@ class RoleSeeder extends Seeder
             'display_name' => 'Game Operator',
             'description' => 'operator',
         ]);
+        //6
+        DB::table('roles')->insert([
+            'name' => 'content_manager',
+            'display_name' => 'Content manager',
+            'description' => 'Content manager',
+        ]);
     }
 }

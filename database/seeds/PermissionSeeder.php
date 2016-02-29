@@ -41,5 +41,11 @@ class PermissionSeeder extends Seeder
             'display_name' => 'Manage game',
             'description' => 'can manage game',
         ]);
+        //6
+        DB::table('permissions')->insert([
+            'name' => 'manage_content',
+            'display_name' => 'Manage content',
+            'description' => 'can manage content',
+        ]);
     }
 }
