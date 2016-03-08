@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 class PermissionController extends Controller
 {
     public function index(){
-	    $permissions = Permission::with('roles')->paginate(10);
+	    $permissions = Permission::with('roles')->paginate(20);
 	    return view('admin.permission.index', ['permissions'=>$permissions]);
     }
 }

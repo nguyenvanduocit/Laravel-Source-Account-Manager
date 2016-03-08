@@ -20,10 +20,10 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">USER MENU</li>
-            <li {{ Request::is('')? 'class=active' : '' }}><a href="{{ route('user.index') }}"><i class="fa fa-gamepad"></i><span>Profile</span></a></li>
-            <li {{ Request::is('game*')? 'class=active' : '' }}><a href="{{ route('game.index') }}"><i class="fa fa-gamepad"></i><span>Browse Games</span></a></li>
+            <li {{ Request::is('')? 'class=active' : '' }}><a href="{{ route('user.index') }}"><i class="fa fa-user"></i><span>Profile</span></a></li>
+            <li {{ Request::is('game*')? 'class=active' : '' }}><a href="{{ route('game.index') }}"><i class="fa fa-list"></i><span>Browse Games</span></a></li>
             <li {{ Request::is('account*')? 'class=active' : '' }}><a href="{{ route('account.mygames') }}"><i class="fa fa-gamepad"></i><span>My games</span></a></li>
-            <li {{ Request::is('post*')? 'class=active' : '' }}><a href="{{ route('post.index') }}"><i class="fa fa-gamepad"></i><span>Posts</span></a></li>
+            <li {{ Request::is('post*')? 'class=active' : '' }}><a href="{{ route('post.index') }}"><i class="fa fa-file-text"></i><span>Posts</span></a></li>
             @yield('after')
         </ul><!-- /.sidebar-menu -->
     </section>
