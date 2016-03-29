@@ -9,7 +9,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravel/socialite" : "^2.0",
-        "nguyenvanduocit/entrust": "5.2.x-dev",
+        "nguyenvanduocit/entrust": "dev-master",
         "barryvdh/laravel-ide-helper": "^2.1",
         "almasaeed2010/adminlte": "^2.3",
         "facebook/php-sdk-v4": "^5.1"

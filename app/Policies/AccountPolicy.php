@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
 use App\Account;
 use App\User;
@@ -10,17 +10,16 @@ class AccountPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine if the given post can be updated by the user.
-     *
-     * @param  \App\User $user
-     * @param Account $account
-     *
-     * @return bool
-     *
-     */
-    public function update(User $user, Account $account)
-    {
-        return $user->id == $account->user_id;
-    }
+/**
+ * Determine if the given post can be updated by the user.
+ *
+ * @param \App\User $user
+ * @param Account   $account
+ *
+ * @return bool
+ */
+public function update(User $user, Account $account)
+{
+    return $user->id == $account->user_id;
+}
 }
